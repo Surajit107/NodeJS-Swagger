@@ -1,0 +1,209 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Backend API Docs",
+    "description": "Auto-generated docs using swagger-autogen + Express + MongoDB",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8700",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "User authentication and JWT flow"
+    },
+    {
+      "name": "Healthcheck",
+      "description": "System health status"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register a new user",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Verification email sent"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verify-email": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Verify email using token",
+        "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Email verification token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email verified successfully"
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User login",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Logged in successfully"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refresh JWT token",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "Cookie",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "example": "refreshToken=your.jwt.token",
+            "description": "Refresh token sent via cookie"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "refreshToken": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tokens refreshed successfully"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Cookie",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "example": "accessToken=your.jwt.token",
+            "description": "Access token sent via cookie"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
+          }
+        }
+      }
+    },
+    "/healthcheck": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Email Template</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #f0f0f0;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #000;
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #0084ff;
+            color: #fff!important;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+
+        .footer-text {
+            font-size: 1em;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>Hi {{fullName}},</p>
+
+        <p>We're happy you signed up. To start exploring the neighborhood, please confirm your
+            email address.</p>
+
+        <div class="button-container">
+            <a href="{{verificationUrl}}" class="button">Verify Now</a>
+        </div>
+    </div>
+</body>
+
+</html>
